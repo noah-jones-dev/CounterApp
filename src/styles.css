@@ -1,0 +1,8 @@
+@import "primeicons/primeicons.css";
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000000;   /* prevents white flash on load */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

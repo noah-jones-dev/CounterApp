@@ -1,0 +1,277 @@
+/* ═══════════════════════════════════════════════════════════
+   PAGE / BACKGROUND  –  shiny modern black
+   ═══════════════════════════════════════════════════════════ */
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+
+  /* Deep black base with electric-blue depth */
+  background:
+    radial-gradient(ellipse at 22% 18%, rgba(20, 80, 255, 0.22) 0%, transparent 48%),
+    radial-gradient(ellipse at 78% 82%, rgba(0,  50, 200, 0.16) 0%, transparent 44%),
+    linear-gradient(170deg, #0a0a1a 0%, #000000 45%, #00000d 100%);
+
+  /* Frameless drag region */
+  -webkit-app-region: drag;
+}
+
+/* ── Gloss sheen: bright streak across the top ── */
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 38%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06)  0%,
+    rgba(255, 255, 255, 0.015) 55%,
+    transparent                100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Subtle blue grid overlay ── */
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(40, 110, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 110, 255, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CLOSE BUTTON  –  big square PrimeNG button, top-right corner
+   ═══════════════════════════════════════════════════════════ */
+.close-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  -webkit-app-region: no-drag;
+  display: block;
+}
+
+/* Target the rendered <button> inside <p-button> */
+.close-btn .p-button {
+  width:  54px !important;
+  height: 54px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  border-left:   1px solid rgba(255, 50, 50, 0.18) !important;
+  border-bottom: 1px solid rgba(255, 50, 50, 0.18) !important;
+  background: rgba(160, 15, 15, 0.12) !important;
+  color: rgba(255, 110, 110, 0.9) !important;
+  font-size: 1.15rem !important;
+  transition: background 0.18s, box-shadow 0.18s, border-color 0.18s !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.close-btn .p-button:hover {
+  background: rgba(220, 25, 25, 0.42) !important;
+  border-color: rgba(255, 70, 70, 0.5) !important;
+  box-shadow: 0 0 22px rgba(220, 30, 30, 0.55), inset 0 0 12px rgba(255, 60, 60, 0.12) !important;
+}
+
+.close-btn .p-button .p-button-icon {
+  font-size: 1.1rem !important;
+  margin: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COUNTER CONTENT
+   ═══════════════════════════════════════════════════════════ */
+.counter-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  -webkit-app-region: no-drag;
+}
+
+.counter-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: #4d9fff;
+  text-shadow:
+    0 0  8px rgba(77, 159, 255, 1),
+    0 0 24px rgba(77, 159, 255, 0.55);
+  margin-bottom: 1.2rem;
+}
+
+.value {
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  text-shadow:
+    0 0 18px rgba(140, 200, 255, 0.95),
+    0 0 45px rgba(60,  130, 255, 0.65),
+    0 0 80px rgba(0,    70, 200, 0.40);
+  margin-bottom: 2.4rem;
+}
+
+/* ── Action buttons ── */
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Glass-dark feel on all action buttons */
+.actions .p-button {
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 12px rgba(0, 80, 255, 0.18);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.actions .p-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.38);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MANUAL VALUE SETTER
+   ═══════════════════════════════════════════════════════════ */
+.set-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.value-input {
+  width: 110px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(77, 159, 255, 0.28);
+  background: rgba(10, 20, 50, 0.72);
+  color: #c8e0ff;
+  font-size: 0.95rem;
+  text-align: center;
+  outline: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-app-region: no-drag;
+}
+
+.value-input:focus {
+  border-color: rgba(77, 159, 255, 0.7);
+  box-shadow: 0 0 12px rgba(77, 159, 255, 0.30);
+}
+
+.value-input::placeholder {
+  color: rgba(120, 160, 220, 0.45);
+}
+
+/* hide number spinners */
+.value-input::-webkit-inner-spin-button,
+.value-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.value-input[type=number] { -moz-appearance: textfield; }
+
+.set-value .p-button {
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(0, 80, 255, 0.15);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.set-value .p-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(0, 100, 255, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SPINNER — three concentric orbiting rings + pulsing core
+   ═══════════════════════════════════════════════════════════ */
+@keyframes spin-cw {
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-ccw {
+  to { transform: rotate(-360deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 8px 3px rgba(77, 159, 255, 0.80),
+                0 0 22px 6px rgba(40, 100, 255, 0.50);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.35);
+    box-shadow: 0 0 16px 6px rgba(77, 159, 255, 0.95),
+                0 0 40px 12px rgba(40, 100, 255, 0.55);
+  }
+}
+
+.spinner-wrap {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 54px;
+  height: 54px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* All rings share a base style */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* Outer ring — slow CW, electric blue */
+.ring-1 {
+  inset: 0;
+  border-width: 2.5px;
+  border-top-color:  rgba(77,  159, 255, 0.90);
+  border-right-color: rgba(77, 159, 255, 0.35);
+  animation: spin-cw 2.4s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(77, 159, 255, 0.70));
+}
+
+/* Middle ring — faster CCW, cyan accent */
+.ring-2 {
+  inset: 9px;
+  border-width: 2px;
+  border-bottom-color: rgba(0, 220, 255, 0.85);
+  border-left-color:   rgba(0, 220, 255, 0.30);
+  animation: spin-ccw 1.6s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(0, 220, 255, 0.60));
+}
+
+/* Inner ring — fastest CW, violet */
+.ring-3 {
+  inset: 18px;
+  border-width: 2px;
+  border-top-color:   rgba(160, 80, 255, 0.85);
+  border-right-color: rgba(160, 80, 255, 0.30);
+  animation: spin-cw 1.0s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(160, 80, 255, 0.55));
+}
+
+/* Pulsing core dot */
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(120, 200, 255, 0.95);
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}

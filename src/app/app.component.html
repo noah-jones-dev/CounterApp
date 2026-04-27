@@ -1,0 +1,42 @@
+<main class="page">
+
+  <!-- Spinning animation — top left -->
+  <div class="spinner-wrap">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+    <div class="core"></div>
+  </div>
+
+  <p-button
+    class="close-btn"
+    icon="pi pi-times"
+    severity="danger"
+    (onClick)="closeApp()"
+    title="Close" />
+
+  <div class="counter-container">
+    <div class="counter-title">COUNTER</div>
+    <div class="value">{{ count() }}</div>
+    <div class="actions">
+      <p-button label="Subtract" icon="pi pi-minus" severity="danger"  (onClick)="decrement()" />
+      <p-button label="Reset"    icon="pi pi-refresh"                  (onClick)="reset()" />
+      <p-button label="Add"      icon="pi pi-plus"    severity="success" (onClick)="increment()" />
+    </div>
+
+    <!-- Manual value setter -->
+    <div class="set-value">
+      <input
+        class="value-input"
+        type="number"
+        placeholder="Set value…"
+        [(ngModel)]="manualValue"
+        (keydown.enter)="setManual()" />
+      <p-button
+        label="Set"
+        icon="pi pi-check"
+        severity="secondary"
+        (onClick)="setManual()" />
+    </div>
+  </div>
+</main>
