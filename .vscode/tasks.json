@@ -37,6 +37,25 @@
           }
         }
       }
+    },
+    {
+      "label": "Update & Build",
+      "detail": "git pull, npm install, then build the Windows installer in release/",
+      "type": "shell",
+      "command": "git pull && npm install && npm run dist",
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/c"]
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "group": "build"
     }
   ]
 }
