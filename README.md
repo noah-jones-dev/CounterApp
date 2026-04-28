@@ -1,27 +1,33 @@
-# PrimengCounter
+# CounterApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+A tray-resident counter built with Angular + PrimeNG, packaged as an Electron desktop app.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Prerequisites (one-time)
 
-## Code scaffolding
+- [Node.js LTS](https://nodejs.org) (v20+)
+- [Git for Windows](https://git-scm.com/download/win)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Build the installer
 
-## Build
+```bash
+git clone https://github.com/noah-jones-dev/CounterApp.git
+cd CounterApp
+npm install
+npm run dist
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`npm run dist` produces an NSIS installer in `release/` (e.g. `release/Counter Setup 1.0.0.exe`).
 
-## Running unit tests
+### Install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run the generated `.exe`. It will prompt for an install location and create a desktop shortcut and Start Menu entry named **Counter**. Launch from either — the app parks itself in the system tray.
 
-## Running end-to-end tests
+### Run without installing
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To launch directly without producing an installer:
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm start
+```
