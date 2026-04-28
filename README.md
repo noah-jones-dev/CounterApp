@@ -31,3 +31,20 @@ To launch directly without producing an installer:
 ```bash
 npm start
 ```
+
+## Updating
+
+After cloning, pulling new changes and rebuilding the installer is a one-step task in VS Code:
+
+1. Open the `CounterApp/` folder in VS Code.
+2. `Ctrl+Shift+P` → **Run Task** → **Update & Build**.
+
+This runs `git pull && npm install && npm run dist` in a dedicated terminal panel. The new installer lands in `release/` — run it to update the existing installation.
+
+Or, from any terminal:
+
+```bash
+git pull
+npm install
+npm run dist
+```
