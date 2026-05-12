@@ -11,6 +11,7 @@
     "electron": "electron .",
     "dist": "npm run build:web && electron-builder --win --x64",
     "dist:portable": "npm run build:web && electron-builder --win portable --x64",
+    "dist:mac": "npm run build:web && electron-builder --mac",
     "watch": "ng build --watch --configuration development --base-href ./"
   },
   "private": true,
@@ -54,10 +55,19 @@
       "electron/**/*",
       "dist/primeng-counter/browser/**/*",
       "public/favicon.ico",
+      "public/icon.icns",
+      "public/icon.png",
       "package.json"
     ],
     "directories": {
       "output": "release"
+    },
+    "mac": {
+      "icon": "public/icon.icns",
+      "category": "public.app-category.utilities",
+      "target": [
+        { "target": "dmg", "arch": ["arm64"] }
+      ]
     },
     "win": {
       "icon": "public/favicon.ico",
