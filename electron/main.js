@@ -79,13 +79,31 @@ function positionNearTray() {
   win.setBounds({ x, y, width: winBounds.width, height: winBounds.height });
 }
 
-function createTray() {
-  const icon = nativeImage.createFromPath(ICON_PATH);
-  tray = new Tray(icon);
-  tray.setToolTip('Counter');
+function getAutoLaunchEnabled() {
+  return app.getLoginItemSettings({ path: process.execPath, args: ['--hidden'] }).openAtLogin;
+}
 
-  const menu = Menu.buildFromTemplate([
+function setAutoLaunch(enabled) {
+  app.setLoginItemSettings({
+    openAtLogin: enabled,
+    path: process.execPath,
+    args: ['--hidden']
+  });
+}
+
+function buildTrayMenu() {
+  return Menu.buildFromTemplate([
     { label: 'Show Counter', click: () => showWindow() },
+    { type: 'separator' },
+    {
+      label: 'Open at login',
+      type: 'checkbox',
+      checked: getAutoLaunchEnabled(),
+      click: (item) => {
+        setAutoLaunch(item.checked);
+        tray.setContextMenu(buildTrayMenu());
+      }
+    },
     { type: 'separator' },
     {
       label: 'Quit',
@@ -95,7 +113,13 @@ function createTray() {
       }
     }
   ]);
-  tray.setContextMenu(menu);
+}
+
+function createTray() {
+  const icon = nativeImage.createFromPath(ICON_PATH);
+  tray = new Tray(icon);
+  tray.setToolTip('Counter');
+  tray.setContextMenu(buildTrayMenu());
   tray.on('click', () => toggleWindow());
   tray.on('double-click', () => showWindow());
 }
